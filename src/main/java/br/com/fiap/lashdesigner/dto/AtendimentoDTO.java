@@ -5,12 +5,17 @@ import br.com.fiap.lashdesigner.domain.Cliente;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class AtendimentoDTO {
 
     private Long id;
     private Long clienteId;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String nomeCliente;
+    
     private LocalDate dataAtendimento;
     private String tipoServico;
     private BigDecimal valor;
