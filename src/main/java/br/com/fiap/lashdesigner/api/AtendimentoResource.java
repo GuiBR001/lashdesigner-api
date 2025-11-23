@@ -10,6 +10,7 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -118,6 +119,18 @@ public class AtendimentoResource {
         }
         AtendimentoDTO resposta = AtendimentoDTO.fromEntity(atendimento);
         return Response.ok(resposta).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Response deletar(@PathParam("id") Long id) {
+        Atendimento atendimento = em.find(Atendimento.class, id);
+        if (atendimento == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        em.remove(atendimento);
+        return Response.noContent().build();
     }
 
     @POST
