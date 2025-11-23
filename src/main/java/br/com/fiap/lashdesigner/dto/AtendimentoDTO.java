@@ -15,7 +15,7 @@ public class AtendimentoDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String nomeCliente;
-    
+
     private LocalDate dataAtendimento;
     private String tipoServico;
     private BigDecimal valor;
